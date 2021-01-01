@@ -1,4 +1,4 @@
-# リンク
+# DynamoDB Enhanced Client リンク
 
 ### 開発者ガイド
 
