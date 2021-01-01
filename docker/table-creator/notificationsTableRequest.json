@@ -2,14 +2,14 @@
     "TableName": "Notifications",
     "AttributeDefinitions": [
         {
-            "AttributeName": "userId",
+            "AttributeName": "user_id",
             "AttributeType": "S"
         }
     ],
     "KeySchema": [
         {
             "KeyType": "HASH",
-            "AttributeName": "userId"
+            "AttributeName": "user_id"
         }
     ],
     "ProvisionedThroughput": {
