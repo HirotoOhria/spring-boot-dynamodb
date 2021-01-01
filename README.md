@@ -1,3 +1,20 @@
+# リンク
+
+### 開発者ガイド
+
+- [Map items in DynamoDB tables](https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/examples-dynamodb-enhanced.html)
+
+### GitHub
+
+- [dynamodb-enhanced](https://github.com/aws/aws-sdk-java-v2/tree/master/services-custom/dynamodb-enhanced)
+
+### JavaDoc
+
+- [annotations](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/enhanced/dynamodb/mapper/annotations/package-summary.html)
+- [TableSchema](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/enhanced/dynamodb/TableSchema.html)
+- [DynamoDbEnhancedClient](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/enhanced/dynamodb/DynamoDbEnhancedClient.html)
+- [DynamoDbTable](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/enhanced/dynamodb/DynamoDbTable.html)
+
 # 構成
 
 ### DynamoDb-local
