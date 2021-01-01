@@ -22,9 +22,17 @@ public class Notification {
         return userId;
     }
 
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     @DynamoDbAttribute(value = "date")
     public String getData() {
         return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     @DynamoDbAttribute(value = "yearToDay")
@@ -32,8 +40,16 @@ public class Notification {
         return yearToDay;
     }
 
+    public void setYearToDay(String yearToDay) {
+        this.yearToDay = yearToDay;
+    }
+
     @DynamoDbAttribute(value = "hourToSecond")
     public String getHourToSecond() {
         return hourToSecond;
+    }
+    
+    public void setHourToSecond(String hourToSecond) {
+        this.hourToSecond = hourToSecond;
     }
 }
