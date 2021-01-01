@@ -27,6 +27,9 @@ public class NotificationRepository {
                                                                                               .getter(Notification::getData)
                                                                                               .setter(Notification::setDate)
                                                                                               .tags(primarySortKey()))
+                                                      .addAttribute(String.class, attr -> attr.name("name")
+                                                                                              .getter(Notification::getName)
+                                                                                              .setter(Notification::setName))
                                                       .build();
 
         this.table = dynamoDbClient.table("notifications", schema);
