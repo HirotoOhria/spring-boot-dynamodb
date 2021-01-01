@@ -20,8 +20,6 @@ RUN apk add --no-cache \
         awscli \
     && rm -rf /var/cache/apk/*
 
-COPY docker/table-creator/notificationsTableRequest.json notifications.json
-
 ENTRYPOINT [ \
-    "prehook", "aws dynamodb create-table --cli-input-json file://notifications.json --endpoint-url http://dynamodb-local:8000", "--" \
+    "prehook", "aws dynamodb create-table --cli-input-json file://table-creator/notificationsTableRequest.json --endpoint-url http://dynamodb-local:8000", "--" \
 ]

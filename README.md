@@ -2,32 +2,23 @@
 
 ### 開発者ガイド
 
+Import先も省略せずに書いてある。
+
 - [Map items in DynamoDB tables](https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/examples-dynamodb-enhanced.html)
 
 ### GitHub
+
+一通りのコードの流れが書いてあるのでおすすめ。
 
 - [dynamodb-enhanced](https://github.com/aws/aws-sdk-java-v2/tree/master/services-custom/dynamodb-enhanced)
 
 ### JavaDoc
 
+- [DynamoDbEnhancedClient](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/enhanced/dynamodb/DynamoDbEnhancedClient.html)
 - [annotations](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/enhanced/dynamodb/mapper/annotations/package-summary.html)
 - [TableSchema](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/enhanced/dynamodb/TableSchema.html)
-- [DynamoDbEnhancedClient](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/enhanced/dynamodb/DynamoDbEnhancedClient.html)
 - [DynamoDbTable](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/enhanced/dynamodb/DynamoDbTable.html)
-
-# 構成
-
-### DynamoDb-local
-
-dockerコンテナで起動。
-
-### table-creator
-
-DynamoDBのテーブルを作成するコンテナ。
-
-### spring-boot アプリケーション
-
-`mvn`コマンドで起動。 dockerコンテナ化はしていない。
+- [StaticAttributeTags](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/enhanced/dynamodb/mapper/StaticAttributeTags.html)
 
 # アプリケーションの起動
 
@@ -45,51 +36,11 @@ $ export AWS_DEFAULT_REGION=ap-northeast \
 $ docker-compose up --build
 
 $ ./mvnw spring-boot:run
-```
-
-# シェルからDynamoDB-localにアクセスできることの確認
-
-```shell
-$ aws dynamodb list-tables --endpoint http://localhost:8000 
-{
-    "TableNames": [
-        "Notifications"
-    ]
-}
-
-$ aws dynamodb describe-table --table-name Notifications --endpoint http://localhost:8000
-{
-    "Table": {
-        "AttributeDefinitions": [
-            {
-                "AttributeName": "userId",
-                "AttributeType": "S"
-            }
-        ],
-        "TableName": "Notifications",
-        "KeySchema": [
-            {
-                "AttributeName": "userId",
-                "KeyType": "HASH"
-            }
-        ],
-        "TableStatus": "ACTIVE",
-        "CreationDateTime": "2021-01-01T12:05:32.727000+09:00",
-        "ProvisionedThroughput": {
-            "LastIncreaseDateTime": "1970-01-01T09:00:00+09:00",
-            "LastDecreaseDateTime": "1970-01-01T09:00:00+09:00",
-            "NumberOfDecreasesToday": 0,
-            "ReadCapacityUnits": 0,
-            "WriteCapacityUnits": 0
-        },
-        "TableSizeBytes": 0,
-        "ItemCount": 0,
-        "TableArn": "arn:aws:dynamodb:ddblocal:000000000000:table/Notifications",
-        "BillingModeSummary": {
-            "BillingMode": "PAY_PER_REQUEST",
-            "LastUpdateToPayPerRequestDateTime": "2021-01-01T12:05:32.727000+09:00"
-        }
-    }
-}
 
 ```
+
+### アクセス
+
+以下のエンドポイントにアクセスすると、テーブルにアイテムが追加される。
+
+- http://localhost:8080/notification/create

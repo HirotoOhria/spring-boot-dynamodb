@@ -1,8 +1,12 @@
 {
-    "TableName": "Notifications",
+    "TableName": "notifications",
     "AttributeDefinitions": [
         {
             "AttributeName": "user_id",
+            "AttributeType": "S"
+        },
+        {
+            "AttributeName": "date",
             "AttributeType": "S"
         }
     ],
@@ -10,6 +14,10 @@
         {
             "KeyType": "HASH",
             "AttributeName": "user_id"
+        },
+        {
+            "KeyType": "RANGE",
+            "AttributeName": "date"
         }
     ],
     "ProvisionedThroughput": {

@@ -7,6 +7,9 @@ import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
 
+import static software.amazon.awssdk.enhanced.dynamodb.mapper.StaticAttributeTags.primaryPartitionKey;
+import static software.amazon.awssdk.enhanced.dynamodb.mapper.StaticAttributeTags.primarySortKey;
+
 @Repository
 public class NotificationRepository {
 
@@ -14,7 +17,19 @@ public class NotificationRepository {
 
     @Autowired
     public NotificationRepository(DynamoDbEnhancedClient dynamoDbClient) {
-        this.table = dynamoDbClient.table("Notifications", TableSchema.fromBean(Notification.class));  // Notificationsテーブルをセット
+        TableSchema<Notification> schema = TableSchema.builder(Notification.class)
+                                                      .newItemSupplier(Notification::new)
+                                                      .addAttribute(String.class, attr -> attr.name("user_id")
+                                                                                              .getter(Notification::getUserid)
+                                                                                              .setter(Notification::setUserId)
+                                                                                              .tags(primaryPartitionKey()))
+                                                      .addAttribute(String.class, attr -> attr.name("date")
+                                                                                              .getter(Notification::getData)
+                                                                                              .setter(Notification::setDate)
+                                                                                              .tags(primarySortKey()))
+                                                      .build();
+
+        this.table = dynamoDbClient.table("notifications", schema);
     }
 
     public void put(Notification notification) {

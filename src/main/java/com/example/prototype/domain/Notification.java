@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbAttribute;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortKey;
 
 @DynamoDbBean
 @NoArgsConstructor
@@ -13,8 +14,7 @@ public class Notification {
 
     private String userId;
     private String date;
-    private String yearToDay;
-    private String hourToSecond;
+    private String name;
 
     @DynamoDbPartitionKey
     @DynamoDbAttribute(value = "userId")
@@ -26,6 +26,7 @@ public class Notification {
         this.userId = userId;
     }
 
+    @DynamoDbSortKey
     @DynamoDbAttribute(value = "date")
     public String getData() {
         return date;
@@ -35,21 +36,13 @@ public class Notification {
         this.date = date;
     }
 
-    @DynamoDbAttribute(value = "yearToDay")
-    public String getYearToDay() {
-        return yearToDay;
+    @DynamoDbAttribute(value = "name")
+    public String getName() {
+        return name;
     }
 
-    public void setYearToDay(String yearToDay) {
-        this.yearToDay = yearToDay;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @DynamoDbAttribute(value = "hourToSecond")
-    public String getHourToSecond() {
-        return hourToSecond;
-    }
-    
-    public void setHourToSecond(String hourToSecond) {
-        this.hourToSecond = hourToSecond;
-    }
 }
